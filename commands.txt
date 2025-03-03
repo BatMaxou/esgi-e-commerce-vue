@@ -1,0 +1,14 @@
+docker run -d -p 27017:27017 -e MONGO_INITDB_DATABASE=ecommerce -v mongodata:/data/db --network ecommerce --name=mongodb mongo:4.4
+
+docker run --rm -p 3000:3000 --network ecommerce --name product-service product-service:latest
+
+docker run --rm -p 3001:3001 --network ecommerce --name auth-service auth-service:latest
+
+docker run --rm -p 3002:3002 --network ecommerce --name order-service order-service:latest
+
+docker run --rm -p 8000:8080 --network ecommerce --name frontend frontend:latest
+
+
+node env
+image de prod
+fermer les ports

@@ -1,0 +1,78 @@
+services:
+  mongodb:
+    image: mongo:4.4
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_DATABASE=ecommerce
+    volumes:
+      - mongodata:/data/db
+    networks:
+      - ecommerce
+
+  product-service:
+    build:
+      context: ./services/product-service
+      target: dev
+    environment:
+      - MONGODB_URI=${MONGODB_URI}
+      - JWT_SECRET=${JWT_SECRET}
+    ports:
+      - 3000:3000
+    networks:
+      - ecommerce
+    depends_on:
+      - mongodb
+  
+  auth-service:
+    build:
+      context: ./services/auth-service
+      target: dev
+    environment:
+      - MONGODB_URI=${MONGODB_URI}
+      - JWT_SECRET=${JWT_SECRET}
+    ports:
+      - 3001:3001
+    networks:
+      - ecommerce
+    depends_on:
+      - mongodb
+
+  order-service:
+    build:
+      context: ./services/order-service
+      target: dev
+    environment:
+      - MONGODB_URI=${MONGODB_URI}
+      - JWT_SECRET=${JWT_SECRET}
+    ports:
+      - 3002:3002
+    networks:
+      - ecommerce
+    depends_on:
+      - mongodb
+
+  frontend:
+    build:
+      context: ./frontend
+      target: dev
+    environment:
+      - VITE_PRODUCT_SERVICE_URL=${VITE_PRODUCT_SERVICE_URL}
+      - VITE_AUTH_SERVICE_URL=${VITE_AUTH_SERVICE_URL}
+      - VITE_ORDER_SERVICE_URL=${VITE_ORDER_SERVICE_URL}
+      - MONGODB_URI=${MONGODB_URI}
+      - JWT_SECRET=${JWT_SECRET}
+    ports:
+      - 8000:8080
+    networks:
+      - ecommerce
+    depends_on:
+      - auth-service
+      - product-service
+      - order-service
+
+volumes:
+  mongodata:
+
+networks:
+  ecommerce:

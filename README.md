@@ -28,9 +28,16 @@ make down-dev
 make build-prod
 ```
 
+### Push images
+
+```
+make push-prod-all
+```
+
 ### Run
 
 ```
+make pull-prod
 make up-prod
 ```
 

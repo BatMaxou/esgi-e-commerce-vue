@@ -1,4 +1,6 @@
-cdf4ec2 2025-03-03 | :sparkles: Docker exam (HEAD -> main, origin/main, origin/HEAD) [BatMaxou]
+f08c924 2025-03-03 | :sparkles: Add registry (HEAD -> main, origin/main, origin/HEAD) [BatMaxou]
+537ae08 2025-03-03 | :memo: Add git log file [BatMaxou]
+cdf4ec2 2025-03-03 | :sparkles: Docker exam [BatMaxou]
 7ef14d1 2025-02-27 | Update deploy.sh [vlne]
 5365e51 2025-02-04 | Create .gitignore [vlne]
 af837a9 2025-02-04 | Create .env.production [vlne]

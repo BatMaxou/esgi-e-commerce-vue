@@ -9,6 +9,7 @@ services:
       - ecommerce_prod
 
   product-service:
+    image: registry.mbaheb.fr:10104/esgi-e-commerce-vue-product-service:latest
     build:
       context: ./services/product-service
       target: prod
@@ -21,6 +22,7 @@ services:
       - mongodb
   
   auth-service:
+    image: registry.mbaheb.fr:10104/esgi-e-commerce-vue-auth-service:latest
     build:
       context: ./services/auth-service
       target: prod
@@ -33,6 +35,7 @@ services:
       - mongodb
 
   order-service:
+    image: registry.mbaheb.fr:10104/esgi-e-commerce-vue-order-service:latest
     build:
       context: ./services/order-service
       target: prod
@@ -45,6 +48,7 @@ services:
       - mongodb
 
   frontend:
+    image: registry.mbaheb.fr:10104/esgi-e-commerce-vue-frontend:latest
     build:
       context: ./frontend
       target: prod
